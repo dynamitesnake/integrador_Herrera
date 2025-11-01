@@ -1,0 +1,83 @@
+/* --- 1. ESTILOS BASE Y TIPOGRAFÍA --- */
+
+body {
+    /* Define la fuente principal del proyecto y estilos base */
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: #222;
+}
+
+h1, h2 {
+    /* Asegura que todos los títulos principales estén centrados */
+    text-align: center;
+}
+
+/* --- 2. LAYOUT DEL ENCABEZADO Y PIE DE PÁGINA --- */
+
+header {
+    /* Estilos del contenedor <header> */
+    background-color: #1e1e2f;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer {
+    /* Estilos del contenedor <footer> */
+    text-align: center;
+    padding: 15px;
+    background-color: #1e1e2f;
+    color: white;
+    margin-top: 40px;
+}
+
+/* --- 3. BARRA DE NAVEGACIÓN (NAVBAR con Flexbox) --- */
+
+.navbar {
+    /* Usa Flexbox para alinear el logo y los links horizontalmente */
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    background-color: #ffffff;
+    padding: 15px 40px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: sticky; /* Fija la barra en la parte superior */
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    /* Ajuste de tamaño del logo */
+    height: 70px;
+    width: auto;
+}
+
+.nav-links {
+    /* Contenedor de los links */
+    list-style: none; /* Elimina las viñetas */
+    display: flex; /* Muestra los links en línea */
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links a {
+    /* Estilo base de los enlaces */
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    /* Efecto al pasar el ratón */
+    color: #007bff;
+}

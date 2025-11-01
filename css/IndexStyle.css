@@ -1,90 +1,107 @@
-body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f8f8f8;
-  color: #222;
-}
-
-header {
-  background-color: #1e1e2f;
-  color: white;
-  padding: 20px 0;
-  text-align: center;
-}
-
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  background-color: #333;
-  padding: 10px 0;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-
-footer {
-  text-align: center;
-  padding: 15px;
-  background-color: #1e1e2f;
-  color: white;
-  margin-top: 40px;
-}
-
-h1, h2 {
-  text-align: center;
-}
-.galeria {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin: 20px;
-}
-
-.galeria img {
-  width: 200px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
 .carousel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 40px auto;
+    /* Contenedor principal del carrusel */
+    display: flex; /* Utiliza Flexbox para ordenar el contenido verticalmente */
+    flex-direction: column;
+    align-items: center; /* Centra el carrusel y los botones horizontalmente */
+    margin: 40px auto;
 }
 
 .carousel img {
-  width: 60%;
-  height: 350px;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  margin-bottom: 10px;
+    /* Estilos de la imagen principal del carrusel */
+    width: 60%;
+    height: 350px;
+    object-fit: cover; /* Asegura que la imagen se ajuste sin distorsionarse */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra suave para darle profundidad */
+    margin-bottom: 10px;
 }
 
 .botones {
-  display: flex;
-  gap: 15px;
+    /* Contenedor de los botones de navegación del carrusel */
+    display: flex; /* Muestra los botones en línea */
+    gap: 15px; /* Espacio entre los botones */
 }
 
 .botones button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1em;
+    /* Estilos de los botones del carrusel */
+    background-color: #007bff; /* Color principal de la paleta */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
 }
 
 .botones button:hover {
-  background-color: #0056b3;
+    /* Efecto hover */
+    background-color: #0056b3; /* Tono más oscuro al pasar el ratón */
 }
+
+/* ------------------------------------------- */
+/* --- 2. SECCIÓN HERO (SLIDES Y CONTENIDO) --- */
+/* ------------------------------------------- */
+.hero {
+    /* Contenedor de la sección hero (puede contener múltiples slides) */
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+}
+
+.hero-slide {
+    /* Estilos para cada slide individual (fondo con imagen) */
+    position: relative; /* Clave para posicionar el contenido y la capa oscura */
+    background-size: cover;
+    background-position: center;
+    height: 90vh; /* Altura de la ventana (vista de pantalla grande) */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Alinea el texto a la izquierda */
+    color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Capa de color oscura sobre la imagen (pseudo-elemento ::before) */
+.hero-slide::before {
+    content: "";
+    position: absolute;
+    inset: 0; /* Cubre todo el área del hero-slide */
+    background: rgba(0, 0, 0, 0.45); /* Negro semi-transparente */
+}
+
+/* Contenido del texto */
+.hero-content {
+    position: relative;
+    z-index: 1; /* Asegura que el texto esté por encima de la capa oscura */
+    max-width: 600px;
+    padding: 40px;
+}
+
+.hero-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.hero-content button {
+    /* Botón de la sección Hero */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px; /* Borde más redondeado para un look moderno */
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.hero-content button:hover {
+    background-color: #0056b3;
+}
+
+

@@ -1,0 +1,86 @@
+/* Contacto */
+form {
+  width: 300px;
+  margin: 40px auto;
+  padding: 20px;
+  background: white;
+  border: 2px solid #0d6efd;
+  border-radius: 10px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input, select, button {
+  width: 100%;
+  margin-top: 5px;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #084298;
+}
+/* Estilos para el contenedor de mensajes (mensaje y resultado) */
+#mensaje, #resultado {
+    width: 300px;
+    margin: 10px auto;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+/* Estilos de error (mostrado con errores.length > 0) */
+.mensaje-error {
+    background-color: #f8d7da; /* Fondo rojo suave */
+    border: 1px solid #f5c6cb;
+    color: #721c24; /* Texto rojo oscuro */
+}
+
+/* Estilos de éxito (mostrado cuando todo está OK) */
+.mensaje-exito {
+    background-color: #d4edda; /* Fondo verde suave */
+    border: 1px solid #c3e6cb;
+    color: #155724; /* Texto verde oscuro */
+    font-weight: bold;
+}
+
+/* Estilos para las listas dentro de los mensajes */
+#mensaje ul, #resultado ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+}
+/* Estilo para los campos que fallan la validación */
+.input-error {
+    border: 2px solid #dc3545 !important; /* Rojo para error */
+    box-shadow: 0 0 5px rgba(220, 53, 69, 0.5);
+    transition: border 0.3s ease;
+}
+/* Estilo básico del Spinner */
+.spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #007bff; /* Color de la paleta */
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    animation: spin 1s linear infinite; /* Animación de giro */
+    display: inline-block;
+    margin-left: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

@@ -1,10 +1,10 @@
+//Js de index.html
 console.log("Tecnomanía: cargando sitio web...");
-alert("👋 ¡Bienvenido a Tecnomanía! Tu tienda virtual de confianza.");
 // Array de imágenes del carrusel
 const imagenes = [
-    "img/cargador.jpeg",
-    "img/auriculares.jpeg",
-    "img/fundas.jpeg"   
+  "img/cargador.jpeg",
+  "img/auriculares.jpeg",
+  "img/fundas.jpeg"
 ];
 
 // Índice de la imagen actual
@@ -18,6 +18,12 @@ const btnNext = document.getElementById("next");
 // Función para actualizar la imagen mostrada
 function mostrarImagen() {
   img.src = imagenes[indice];
+}
+// Función para pasar automáticamente a la siguiente imagen
+function siguienteImagen() {
+  indice++;
+  if (indice >= imagenes.length) indice = 0;
+  mostrarImagen();
 }
 
 // Botón "Siguiente"
@@ -33,4 +39,14 @@ btnPrev.addEventListener("click", () => {
   if (indice < 0) indice = imagenes.length - 1; // va al final
   mostrarImagen();
 });
-document.write("<h3 style='text-align:center; color:#007bff;'>Gracias por visitar Tecnomanía 🖥️</h3>");
+
+// Cambio automático cada 3 segundos
+let intervalo = setInterval(siguienteImagen, 3000);
+
+// Pausa el carrusel cuando el mouse está sobre la imagen
+img.addEventListener("mouseover", () => clearInterval(intervalo));
+
+// Reanuda el carrusel cuando se quita el mouse
+img.addEventListener("mouseout", () => {
+  intervalo = setInterval(siguienteImagen, 3000);
+});
