@@ -38,9 +38,9 @@
     background-color: #0056b3; /* Tono más oscuro al pasar el ratón */
 }
 
-/* ------------------------------------------- */
+
 /* --- 2. SECCIÓN HERO (SLIDES Y CONTENIDO) --- */
-/* ------------------------------------------- */
+
 .hero {
     /* Contenedor de la sección hero (puede contener múltiples slides) */
     display: flex;
@@ -63,7 +63,7 @@
     overflow: hidden;
 }
 
-/* Capa de color oscura sobre la imagen (pseudo-elemento ::before) */
+/* Capa de color oscura sobre la imagen */
 .hero-slide::before {
     content: "";
     position: absolute;
@@ -95,7 +95,7 @@
     color: white;
     border: none;
     padding: 10px 20px;
-    border-radius: 25px; /* Borde más redondeado para un look moderno */
+    border-radius: 25px; /* Borde más redondeado */
     cursor: pointer;
     transition: background 0.3s;
 }

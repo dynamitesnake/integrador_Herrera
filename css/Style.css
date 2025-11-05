@@ -18,7 +18,7 @@ h1, h2 {
 
 header {
     /* Estilos del contenedor <header> */
-    background-color: #1e1e2f;
+    background-color: #E69C1E;
     color: white;
     padding: 20px 0;
     text-align: center;
@@ -28,7 +28,7 @@ footer {
     /* Estilos del contenedor <footer> */
     text-align: center;
     padding: 15px;
-    background-color: #1e1e2f;
+    background-color: #E69C1E;
     color: white;
     margin-top: 40px;
 }
@@ -36,14 +36,18 @@ footer {
 /* --- 3. BARRA DE NAVEGACIÓN (NAVBAR con Flexbox) --- */
 
 .navbar {
-    /* Usa Flexbox para alinear el logo y los links horizontalmente */
     display: flex;
-    justify-content: space-between; 
+    /* CAMBIO CLAVE: Agrupa todos los elementos (logo y enlaces) a la izquierda */
+    justify-content: flex-start; 
     align-items: center; 
+    
+    /* Agrega un espacio entre el logo y el menú de enlaces */
+    gap: 40px; 
+    
     background-color: #ffffff;
-    padding: 15px 40px;
+    padding: 10px 40px; /* Mantenemos la barra compacta */
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    position: sticky; /* Fija la barra en la parte superior */
+    position: sticky;
     top: 0;
     z-index: 100;
 }
@@ -56,28 +60,28 @@ footer {
 
 .logo img {
     /* Ajuste de tamaño del logo */
-    height: 70px;
+    height: 40px;
     width: auto;
 }
 
 .nav-links {
-    /* Contenedor de los links */
-    list-style: none; /* Elimina las viñetas */
-    display: flex; /* Muestra los links en línea */
-    gap: 30px;
+    list-style: none;
+    display: flex;
+    gap: 25px;
     padding: 0;
-    margin: 0;
+    /* CLAVE: Asegúrate de que no tenga 'margin-left: auto' */
+    margin: 0; 
 }
 
 .nav-links a {
-    /* Estilo base de los enlaces */
     text-decoration: none;
     color: #333;
     font-weight: 500;
-    transition: color 0.3s ease;
+    padding: 10px 0;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
 }
 
 .nav-links a:hover {
-    /* Efecto al pasar el ratón */
     color: #007bff;
+    border-bottom: 2px solid #007bff; /* Efecto profesional */
 }
