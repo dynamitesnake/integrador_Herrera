@@ -15,6 +15,9 @@
     box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra suave para darle profundidad */
     margin-bottom: 10px;
 }
+.carousel img {
+  transition: opacity 1s ease-in-out;
+}
 
 .botones {
     /* Contenedor de los botones de navegación del carrusel */

@@ -1,13 +1,6 @@
 /* --- 1. ESTILOS BASE Y TIPOGRAFÍA --- */
 
-body {
-    /* Define la fuente principal del proyecto y estilos base */
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f8f8;
-    color: #222;
-}
+
 
 h1, h2 {
     /* Asegura que todos los títulos principales estén centrados */
@@ -84,4 +77,10 @@ footer {
 .nav-links a:hover {
     color: #007bff;
     border-bottom: 2px solid #007bff; /* Efecto profesional */
+}
+body {
+  background-image: url("../img/fondopag2.jpg"); /* ruta a tu imagen */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
