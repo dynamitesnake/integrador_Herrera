@@ -1,122 +1,153 @@
+// Espera a que el DOM esté completamente cargado
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("contact-form");
-  const inputNombre = document.getElementById("nombre");
-  const inputTelefono = document.getElementById("telefono");
-  const inputEmail = document.getElementById("email");
-  const inputMensaje = document.getElementById("mensaje");
-  const spinnerOverlay = document.getElementById("spinner");
-  const modal = document.getElementById("modal");
-  const modalBody = document.getElementById("modal-body");
-  const closeModal = document.getElementById("closeModal");
+    
+    // --- 1. REFERENCIAS A ELEMENTOS DEL DOM ---
+    const form = document.getElementById("contact-form");
+    const inputNombre = document.getElementById("nombre");
+    const inputTelefono = document.getElementById("telefono");
+    const inputEmail = document.getElementById("email");
+    const inputMensaje = document.getElementById("mensaje");
+    const spinnerOverlay = document.getElementById("spinner");
+    const modal = document.getElementById("modal");
+    const modalBody = document.getElementById("modal-body");
+    const closeModal = document.getElementById("closeModal");
 
-  // Expresiones regulares para validación
-  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const regexTelefono = /^[0-9]{6,15}$/;
+    // --- 2. EXPRESIONES REGULARES PARA VALIDACIÓN ---
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Verifica formato email (ej: a@b.c)
+    const regexTelefono = /^[0-9]{6,15}$/;           // Solo números, entre 6 y 15 dígitos
 
-  /**
-   * Valida un campo de entrada en tiempo real
-   */
-  function validarCampo(inputElement, regex, errorElementId, mensajeError) {
-    const valor = inputElement.value.trim();
-    const errorElement = document.getElementById(errorElementId);
+    // --- 3. FUNCIÓN DE VALIDACIÓN REUTILIZABLE ---
 
-    if (valor.length === 0) {
-      inputElement.classList.remove("input-error");
-      errorElement.textContent = "";
-      return false;
+    /**
+     * Valida un campo de entrada basado en una expresión regular o longitud mínima.
+     * Añade o quita la clase 'input-error' y muestra/oculta el mensaje de error.
+     * @param {HTMLElement} inputElement - El campo de entrada a validar.
+     * @param {RegExp} regex - La expresión regular para la validación (puede ser null/false para longitud).
+     * @param {string} errorElementId - ID del div donde se muestra el error.
+     * @param {string} mensajeError - Mensaje a mostrar si la validación falla.
+     * @returns {boolean} True si el campo es válido, False en caso contrario.
+     */
+    function validarCampo(inputElement, regex, errorElementId, mensajeError) {
+        const valor = inputElement.value.trim();
+        const errorElement = document.getElementById(errorElementId);
+        
+        // 1. Si el campo está vacío, quita el error y no lo marca como inválido (solo lo hace en el submit)
+        if (valor.length === 0) {
+            inputElement.classList.remove("input-error");
+            errorElement.textContent = "";
+            return false;
+        }
+
+        // 2. Realiza la prueba con la expresión regular proporcionada
+        // Nota: Solo se usa regex para email y teléfono, los demás usan lógica de longitud.
+        const esValido = regex ? regex.test(valor) : true;
+
+        if (!esValido) {
+            inputElement.classList.add("input-error");
+            errorElement.textContent = mensajeError;
+            return false;
+        } else {
+            inputElement.classList.remove("input-error");
+            errorElement.textContent = "";
+            return true;
+        }
     }
 
-    if (!regex.test(valor)) {
-      inputElement.classList.add("input-error");
-      errorElement.textContent = mensajeError;
-      return false;
-    } else {
-      inputElement.classList.remove("input-error");
-      errorElement.textContent = "";
-      return true;
-    }
-  }
+    // --- 4. VALIDACIONES EN TIEMPO REAL (EVENTO 'input') ---
+    
+    // Email y Teléfono usan la función genérica con regex
+    inputEmail.addEventListener("input", () =>
+        validarCampo(inputEmail, regexEmail, "error-email", "Formato de email inválido.")
+    );
+    inputTelefono.addEventListener("input", () =>
+        validarCampo(inputTelefono, regexTelefono, "error-telefono", "Formato de teléfono incorrecto (solo números, 6 a 15 dígitos).")
+    );
 
-  // Validaciones en tiempo real
-  inputEmail.addEventListener("input", () =>
-    validarCampo(inputEmail, regexEmail, "error-email", "Formato de email inválido.")
-  );
-  inputTelefono.addEventListener("input", () =>
-    validarCampo(inputTelefono, regexTelefono, "error-telefono", "Formato de teléfono incorrecto.")
-  );
-  inputNombre.addEventListener("input", () => {
-    const valor = inputNombre.value.trim();
-    const errorElement = document.getElementById("error-nombre");
-    if (valor.length === 0) {
-      inputNombre.classList.remove("input-error");
-      errorElement.textContent = "";
-    } else if (valor.length < 3) {
-      inputNombre.classList.add("input-error");
-      errorElement.textContent = "El nombre debe tener al menos 3 caracteres.";
-    } else {
-      inputNombre.classList.remove("input-error");
-      errorElement.textContent = "";
-    }
-  });
-  inputMensaje.addEventListener("input", () => {
-    const valor = inputMensaje.value.trim();
-    const errorElement = document.getElementById("error-mensaje");
-    if (valor.length === 0) {
-      inputMensaje.classList.remove("input-error");
-      errorElement.textContent = "";
-    } else if (valor.length < 10) {
-      inputMensaje.classList.add("input-error");
-      errorElement.textContent = "El mensaje debe tener al menos 10 caracteres.";
-    } else {
-      inputMensaje.classList.remove("input-error");
-      errorElement.textContent = "";
-    }
-  });
+    // Nombre y Mensaje usan lógica de longitud mínima
+    inputNombre.addEventListener("input", () => {
+        const valor = inputNombre.value.trim();
+        const errorElement = document.getElementById("error-nombre");
+        
+        if (valor.length === 0) {
+            inputNombre.classList.remove("input-error");
+            errorElement.textContent = "";
+        } else if (valor.length < 3) {
+            inputNombre.classList.add("input-error");
+            errorElement.textContent = "El nombre debe tener al menos 3 caracteres.";
+        } else {
+            inputNombre.classList.remove("input-error");
+            errorElement.textContent = "";
+        }
+    });
 
-  /**
-   * Envío del formulario con simulación de carga y modal de confirmación
-   */
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
+    inputMensaje.addEventListener("input", () => {
+        const valor = inputMensaje.value.trim();
+        const errorElement = document.getElementById("error-mensaje");
+        
+        if (valor.length === 0) {
+            inputMensaje.classList.remove("input-error");
+            errorElement.textContent = "";
+        } else if (valor.length < 10) {
+            inputMensaje.classList.add("input-error");
+            errorElement.textContent = "El mensaje debe tener al menos 10 caracteres.";
+        } else {
+            inputMensaje.classList.remove("input-error");
+            errorElement.textContent = "";
+        }
+    });
 
-    const nombreValido = inputNombre.value.trim().length >= 3;
-    const telefonoValido = regexTelefono.test(inputTelefono.value.trim());
-    const emailValido = regexEmail.test(inputEmail.value.trim());
-    const mensajeValido = inputMensaje.value.trim().length >= 10;
 
-    if (nombreValido && telefonoValido && emailValido && mensajeValido) {
-      spinnerOverlay.style.display = "flex"; // Mostrar spinner centrado
+    // --- 5. LÓGICA DE ENVÍO DEL FORMULARIO ---
 
-      setTimeout(() => {
-  spinnerOverlay.style.display = "none"; // Ocultar spinner
+    form.addEventListener("submit", (e) => {
+        e.preventDefault(); // Detiene el envío predeterminado del formulario
 
-  // Mostrar ventana modal con los datos ingresados
-  modal.style.display = "flex";
-  modalBody.innerHTML = `
-    <p><strong>Nombre:</strong> ${inputNombre.value}</p>
-    <p><strong>Teléfono:</strong> ${inputTelefono.value}</p>
-    <p><strong>Email:</strong> ${inputEmail.value}</p>
-    <p><strong>Mensaje:</strong> ${inputMensaje.value}</p>
-    <hr style="margin: 15px 0; border-color: #62D0E1;">
-    <p>🎉 ¡Gracias por contactarte con <strong>Tecnomanía</strong>!<br>
-    Te responderemos a la brevedad 📩</p>
-  `;
+        // Revalida todos los campos antes de enviar
+        const nombreValido = inputNombre.value.trim().length >= 3;
+        const telefonoValido = regexTelefono.test(inputTelefono.value.trim());
+        const emailValido = regexEmail.test(inputEmail.value.trim());
+        const mensajeValido = inputMensaje.value.trim().length >= 10;
+        
+        // Verifica si todos los campos son válidos
+        if (nombreValido && telefonoValido && emailValido && mensajeValido) {
+            
+            spinnerOverlay.style.display = "flex"; // Mostrar spinner para simular carga
 
-  form.reset();
-}, 2000);
-    } else {
-      // Mostrar errores en los campos no válidos
-      validarCampo(inputEmail, regexEmail, "error-email", "Formato de email inválido.");
-      validarCampo(inputTelefono, regexTelefono, "error-telefono", "Formato de teléfono incorrecto.");
-      inputNombre.dispatchEvent(new Event("input"));
-      inputMensaje.dispatchEvent(new Event("input"));
-    }
-  });
+            // Simulación de envío de datos al servidor (retardo de 2 segundos)
+            setTimeout(() => {
+                spinnerOverlay.style.display = "none"; // Ocultar spinner
 
-  // Cerrar el modal
-  closeModal.addEventListener("click", () => (modal.style.display = "none"));
-  window.addEventListener("click", (e) => {
-    if (e.target === modal) modal.style.display = "none";
-  });
+                // Muestra la ventana modal con la confirmación y los datos
+                modal.style.display = "flex";
+                modalBody.innerHTML = `
+                    <p><strong>Nombre:</strong> ${inputNombre.value}</p>
+                    <p><strong>Teléfono:</strong> ${inputTelefono.value}</p>
+                    <p><strong>Email:</strong> ${inputEmail.value}</p>
+                    <p><strong>Mensaje:</strong> ${inputMensaje.value}</p>
+                    <hr style="margin: 15px 0; border-color: #62D0E1;">
+                    <p>🎉 ¡Gracias por contactarte con <strong>Tecnomanía</strong>!<br>
+                    Te responderemos a la brevedad 📩</p>
+                `;
+
+                form.reset(); // Limpia todos los campos del formulario
+            }, 2000); // 2 segundos de retardo
+        } else {
+            // Si hay errores, dispara manualmente los eventos 'input' para mostrar los mensajes de error
+            // si el usuario dejó campos vacíos o mal formateados
+            validarCampo(inputEmail, regexEmail, "error-email", "Formato de email inválido.");
+            validarCampo(inputTelefono, regexTelefono, "error-telefono", "Formato de teléfono incorrecto.");
+            inputNombre.dispatchEvent(new Event("input"));
+            inputMensaje.dispatchEvent(new Event("input"));
+        }
+    });
+
+    // --- 6. CIERRE DEL MODAL ---
+    
+    // Cerrar al hacer clic en la 'X'
+    closeModal.addEventListener("click", () => (modal.style.display = "none"));
+    
+    // Cerrar al hacer clic fuera del contenido del modal
+    window.addEventListener("click", (e) => {
+        if (e.target === modal) modal.style.display = "none";
+    });
 });
-

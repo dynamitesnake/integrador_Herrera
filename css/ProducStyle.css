@@ -1,100 +1,105 @@
-/* ---- Sección de Productos ---- */
-.productos {
-  text-align: center;
-  margin: 60px 20px;
-}
 
-.productos h2 {
-  font-size: 2em;
-  color: #00d9d0;
-  text-shadow: 0 0 10px #00d9d0;
-  margin-bottom: 30px;
-}
+/*
+=====================================================
+    PRODUCSTYLE.CSS (ESTILOS ESPECÍFICOS DEL CATÁLOGO DE PRODUCTOS)
+=====================================================
 
+ÍNDICE:
+1. LAYOUT DEL CATÁLOGO
+2. TARJETAS DE PRODUCTO
+3. MODAL DE DETALLES (Ventana emergente)
+4. ANIMACIONES
+
+*/
+
+/* --- 1. LAYOUT DEL CATÁLOGO --- */
 .lista-productos {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 40px;
+    /* Contenedor principal de los productos (Grid o Flexbox) */
+    display: flex;
+    justify-content: center; /* Centra los productos en la fila */
+    flex-wrap: wrap; /* Permite que las tarjetas salten de línea en pantallas pequeñas */
+    gap: 40px; /* Espacio entre cada tarjeta de producto */
+    padding: 30px 0;
 }
 
-/* Tarjetas de producto */
+/* --- 2. TARJETAS DE PRODUCTO --- */
+
 .producto {
-  background-color: rgba(60, 60, 60, 0.85);
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0, 217, 208, 0.3);
-  color: white;
-  padding: 20px;
-  width: 260px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Estilos base de cada tarjeta individual */
+    background-color: rgba(60, 60, 60, 0.85); /* Fondo oscuro semi-transparente */
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 217, 208, 0.3); /* Sombra temática clara */
+    color: white;
+    padding: 20px;
+    width: 260px; /* Ancho fijo de la tarjeta */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones para hover */
 }
 
 .producto:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(0, 217, 208, 0.7);
+    /* Efecto al pasar el mouse */
+    transform: scale(1.05); /* Ligeramente más grande */
+    box-shadow: 0 0 25px rgba(0, 217, 208, 0.7); /* Sombra más intensa */
 }
 
 .producto img {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 15px;
+    /* Imagen dentro de la tarjeta */
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
 }
 
 .producto h3 {
-  margin: 10px 0;
-  color: #00d9d0;
-  font-size: 1.2em;
-}
-
-.producto p {
-  font-size: 0.9em;
-  margin-bottom: 10px;
+    color: #00d9d0; /* Color primario para el título */
+    font-size: 1.2em;
 }
 
 .precio {
-  color: #ffd700;
-  font-weight: bold;
-  font-size: 1.1em;
+    /* Destaca el precio */
+    color: #ffd700; /* Color amarillo/oro */
+    font-weight: bold;
+    font-size: 1.1em;
 }
 
-/* Botones */
+/* Estilo del botón "Ver Detalles" */
 .ver-detalles {
-  background: linear-gradient(90deg, #00d9d0, #007bff);
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+    background: linear-gradient(90deg, #00d9d0, #007bff);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
 .ver-detalles:hover {
-  transform: scale(1.05);
-  background: linear-gradient(90deg, #007bff, #00d9d0);
+    transform: scale(1.05);
+    background: linear-gradient(90deg, #007bff, #00d9d0); /* Cambio de degradado en hover */
 }
 
-/* --- MODAL MEJORADO Y CORREGIDO TECNOMANÍA --- */
+/* --- 3. MODAL DE DETALLES (VENTANA EMERGENTE) --- */
 
 .modal-container {
-    display: none; /* 🔹 Importante: oculto por defecto */
+    /* Contenedor principal del modal (fondo oscuro) */
+    display: none; 
     position: fixed;
-    inset: 0;
+    inset: 0; /* Cubre toda la ventana (top, right, bottom, left: 0) */
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(6px);
     z-index: 2000;
     justify-content: center;
     align-items: center;
     transition: opacity 0.3s ease;
-    opacity: 0;
+    opacity: 0; /* Opacidad inicial para la transición de entrada */
 }
 
-/* Cuando está activo (JS agrega la clase "show") */
+/* Muestra el modal cuando JS añade esta clase */
 .modal-container.show {
     display: flex;
     opacity: 1;
 }
 
 .modal-content {
+    /* Caja de contenido del modal (lo que el usuario ve) */
     background: linear-gradient(135deg, #1e1e1e, #2b2b2b);
     color: #f8f9fa;
     border-radius: 15px;
@@ -104,38 +109,27 @@
     position: relative;
     text-align: center;
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
-    transform: scale(0.95);
+    transform: scale(0.95); /* Estado inicial para la animación */
     animation: modalFadeIn 0.3s ease forwards;
 }
 
 .modal-content img {
-    width: 100%;
     max-height: 250px;
-    object-fit: contain;
-    border-radius: 10px;
-    margin-bottom: 15px;
+    object-fit: contain; /* Asegura que la imagen se vea completa */
 }
 
 .modal-content h3 {
-    font-size: 1.6rem;
-    margin-bottom: 10px;
-    color: #0d6efd;
+    color: #0d6efd; /* Título del modal */
     text-transform: uppercase;
 }
 
-.modal-content p {
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
 .precio-modal {
-    font-size: 1.4em;
-    color: #ffc107;
+    color: #ffc107; /* Precio en el modal (color amarillo) */
     font-weight: bold;
-    margin-top: 15px;
 }
 
 .close-btn {
+    /* Botón de cerrar (X) */
     position: absolute;
     top: 12px;
     right: 20px;
@@ -145,11 +139,9 @@
     transition: color 0.2s;
 }
 
-.close-btn:hover {
-    color: #fff;
-}
+/* --- 4. ANIMACIONES --- */
 
-/* Animación de entrada */
+/* Animación que hace aparecer el modal (escala y opacidad) */
 @keyframes modalFadeIn {
     from {
         opacity: 0;
