@@ -6,66 +6,88 @@
     <title>Productos</title>
     <link rel="stylesheet" href="../css/ProducStyle.css">
     <link rel="stylesheet" href="../css/Style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
     <header>
-        <h1>Tecnomania Store - Productos</h1>
+        <img src="../img/Gemini_Generated_Image_tocc0xtocc0xtocc (1).png" alt="Logo Tecnomanía" class="logo-header">
     </header>
     <nav class="navbar">
-            <div class="logo">
-                <img src="../img/logo1.png" alt="Logo Tecnomanía">
-            </div>
+            
             <ul class="nav-links">
                 <li><a href="../index.html">Inicio</a></li>
                 <li><a href="products.html">Productos</a></li>
                 <li><a href="contact.html">Contacto</a></li>
             </ul>
         </nav>
-    <section class="galeria">
-        <h2>Nuestra Galería de Productos</h2>
-        <img src="../img/auriculares.jpeg" alt="Producto 1">
-        <img src="../img/cargador.jpeg" alt="Producto 2">
-        <img src="../img/fundas.jpeg" alt="Producto 3">
-    </section>
-    <section class="productos">
-    <h2>Lista de Productos</h2>
     
+  <h2>Nuestros Productos</h2>
+
+  <div class="lista-productos">
     <div class="producto">
-        <img src="../img/auriculares.jpeg" alt="Producto 1">
-        <h3>Producto 1</h3>
-        <p>Sonido envolvente, batería de larga duración y estilo moderno.</p>
-        <p class="precio">$100</p>
-        <button class="ver-detalles">Ver Detalles</button> </div>
-    
+      <img src="../img/auriculares.jpeg" alt="Auriculares Bluetooth">
+      <h3>Auriculares Bluetooth Pro</h3>
+      <p>Sonido envolvente, batería de larga duración y estilo moderno.</p>
+      <p class="precio">$100</p>
+      <button class="ver-detalles"><i class="fa-solid fa-circle-info"></i> Ver Detalles</button>
+    </div>
+
     <div class="producto">
-        <img src="../img/cargador.jpeg" alt="Producto 2">
-        <h3>Producto 2</h3>
-        <p>Potencia tu energía al máximo. Tecnología avanzada para todos tus dispositivos.</p>
-        <p class="precio">$200</p>
-        <button class="ver-detalles">Ver Detalles</button> </div>
-    
+      <img src="../img/cargador.jpeg" alt="Cargador rápido">
+      <h3>Cargador Rápido</h3>
+      <p>Potencia tu energía al máximo con tecnología de carga avanzada.</p>
+      <p class="precio">$200</p>
+      <button class="ver-detalles"><i class="fa-solid fa-circle-info"></i> Ver Detalles</button>
+    </div>
+
     <div class="producto">
-        <img src="../img/fundas.jpeg" alt="Producto 3">
-        <h3>Producto 3</h3>
-        <p>Protegé tu smartphone con estilo. Materiales premium y diseños únicos.</p>
-        <p class="precio">$300</p>
-        <button class="ver-detalles">Ver Detalles</button> </div>
+      <img src="../img/fundas.jpeg" alt="Funda protectora">
+      <h3>Funda Protectora Premium</h3>
+      <p>Protegé tu smartphone con materiales premium y diseños únicos.</p>
+      <p class="precio">$300</p>
+      <button class="ver-detalles"><i class="fa-solid fa-circle-info"></i> Ver Detalles</button>
+    </div>
+  </div>
 </section>
 
     </section>
     <div id="modal-container" class="modal-container">
-    <div class="modal-content">
-        <span class="close-btn" id="close-modal">&times;</span>
-        <img id="modal-img" src="" alt="Imagen del producto en modal">
-        <h3 id="modal-title">Título del Producto</h3>
-        <p id="modal-description">Descripción detallada del producto.</p>
-        <p id="modal-price" class="precio-modal">$0</p>
-    </div>
+  <div class="modal-content">
+    <span class="close-btn" id="close-modal">&times;</span>
+    <img id="modal-img" src="" alt="Imagen del producto en modal">
+    <h3 id="modal-title">Título del Producto</h3>
+    <p id="modal-description">Descripción detallada del producto.</p>
+    <p id="modal-price" class="precio-modal">$0</p>
+  </div>
 </div>
 
-<footer>
-    <p>&copy; 2024 Tecnomania Store. Todos los derechos reservados.</p>
+  <footer class="footer">
+  <div class="footer-container">
+    <div class="footer-info">
+      <h3>TECNOMANÍA</h3>
+      <p>Tu tienda de tecnología y accesorios de confianza.</p>
+    </div>
+
+    <div class="footer-contact">
+      <h4>Contacto</h4>
+      <p><i class="fa fa-phone"></i> +54 9 2664 123456</p>
+      <p><i class="fa fa-envelope"></i> contacto@tecnomania.com</p>
+      <p><i class="fa fa-map-marker"></i> San Luis, Argentina</p>
+    </div>
+
+    <div class="footer-social">
+      <h4>Seguinos</h4>
+      <a href="https://www.instagram.com/tecnomania" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.facebook.com/tecnomania" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://wa.me/5492664123456" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 Tecnomanía - Todos los derechos reservados</p>
+  </div>
 </footer>
 
 <script src="../JS/product.js"></script>

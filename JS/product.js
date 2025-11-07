@@ -10,30 +10,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalPrice = document.getElementById('modal-price');
 
     // 2. Función para abrir el modal
-    function abrirModal(e) {
-        // e.target es el botón en el que se hizo clic
-        const productoDiv = e.target.closest('.producto');
+ function abrirModal(e) {
+    const productoDiv = e.target.closest('.producto');
+    const imgSrc = productoDiv.querySelector('img').src;
+    const title = productoDiv.querySelector('h3').textContent;
+    const description = productoDiv.querySelector('p').textContent;
+    const price = productoDiv.querySelector('.precio').textContent;
 
-        // Extraer la información del producto
-        const imgSrc = productoDiv.querySelector('img').src;
-        const title = productoDiv.querySelector('h3').textContent;
-        const description = productoDiv.querySelector('p').textContent;
-        const price = productoDiv.querySelector('.precio').textContent;
+    modalImg.src = imgSrc;
+    modalTitle.textContent = title;
+    modalDescription.textContent = description;
+    modalPrice.textContent = price;
 
-        // Rellenar el modal con la información
-        modalImg.src = imgSrc;
-        modalTitle.textContent = title;
-        modalDescription.textContent = description;
-        modalPrice.textContent = price;
+    modalContainer.classList.add('show'); // 🔹 Mostrar modal correctamente
+}
 
-        // Mostrar el modal
-        modalContainer.style.display = 'block';
-    }
-
-    // 3. Función para cerrar el modal
-    function cerrarModal() {
-        modalContainer.style.display = 'none';
-    }
+function cerrarModal() {
+    modalContainer.classList.remove('show'); // 🔹 Ocultar modal correctamente
+}
 
     // 4. Asignar Event Listeners
     

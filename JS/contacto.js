@@ -88,19 +88,22 @@ document.addEventListener("DOMContentLoaded", () => {
       spinnerOverlay.style.display = "flex"; // Mostrar spinner centrado
 
       setTimeout(() => {
-        spinnerOverlay.style.display = "none"; // Ocultar spinner
+  spinnerOverlay.style.display = "none"; // Ocultar spinner
 
-        // Mostrar ventana modal con los datos ingresados
-        modal.style.display = "flex";
-        modalBody.innerHTML = `
-          <p><strong>Nombre:</strong> ${inputNombre.value}</p>
-          <p><strong>Teléfono:</strong> ${inputTelefono.value}</p>
-          <p><strong>Email:</strong> ${inputEmail.value}</p>
-          <p><strong>Mensaje:</strong> ${inputMensaje.value}</p>
-        `;
+  // Mostrar ventana modal con los datos ingresados
+  modal.style.display = "flex";
+  modalBody.innerHTML = `
+    <p><strong>Nombre:</strong> ${inputNombre.value}</p>
+    <p><strong>Teléfono:</strong> ${inputTelefono.value}</p>
+    <p><strong>Email:</strong> ${inputEmail.value}</p>
+    <p><strong>Mensaje:</strong> ${inputMensaje.value}</p>
+    <hr style="margin: 15px 0; border-color: #62D0E1;">
+    <p>🎉 ¡Gracias por contactarte con <strong>Tecnomanía</strong>!<br>
+    Te responderemos a la brevedad 📩</p>
+  `;
 
-        form.reset();
-      }, 2000);
+  form.reset();
+}, 2000);
     } else {
       // Mostrar errores en los campos no válidos
       validarCampo(inputEmail, regexEmail, "error-email", "Formato de email inválido.");
