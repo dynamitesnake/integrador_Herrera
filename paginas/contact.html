@@ -18,7 +18,6 @@
 
   <!-- NAVBAR -->
   <nav class="navbar">
-    
     <ul class="nav-links">
       <li><a href="../index.html">Inicio</a></li>
       <li><a href="products.html">Productos</a></li>
@@ -31,8 +30,8 @@
     <section class="contact-section">
       <h2>Contáctanos</h2>
 
-      <!-- FORMULARIO DE CONTACTO -->
-      <form id="contact-form">
+      <!-- FORMULARIO CORREGIDO -->
+      <form id="contact-form" novalidate>
         <label>Nombre:</label>
         <input type="text" id="nombre" required maxlength="50">
         <div class="error-msg" id="error-nombre"></div>
@@ -71,31 +70,31 @@
   <script src="../JS/contacto.js"></script>
 
   <!-- FOOTER -->
-    <footer class="footer">
-  <div class="footer-container">
-    <div class="footer-info">
-      <h3>TECNOMANÍA</h3>
-      <p>Tu tienda de tecnología y accesorios de confianza.</p>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-info">
+        <h3>TECNOMANÍA</h3>
+        <p>Tu tienda de tecnología y accesorios de confianza.</p>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contacto</h4>
+        <p><i class="fa fa-phone"></i> +54 9 2664 123456</p>
+        <p><i class="fa fa-envelope"></i> contacto@tecnomania.com</p>
+        <p><i class="fa fa-map-marker"></i> San Luis, Argentina</p>
+      </div>
+
+      <div class="footer-social">
+        <h4>Seguinos</h4>
+        <a href="https://www.instagram.com/tecnomania" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.facebook.com/tecnomania" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://wa.me/5492664123456" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
     </div>
 
-    <div class="footer-contact">
-      <h4>Contacto</h4>
-      <p><i class="fa fa-phone"></i> +54 9 2664 123456</p>
-      <p><i class="fa fa-envelope"></i> contacto@tecnomania.com</p>
-      <p><i class="fa fa-map-marker"></i> San Luis, Argentina</p>
+    <div class="footer-bottom">
+      <p>© 2025 Tecnomanía - Todos los derechos reservados</p>
     </div>
-
-    <div class="footer-social">
-      <h4>Seguinos</h4>
-      <a href="https://www.instagram.com/tecnomania" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-      <a href="https://www.facebook.com/tecnomania" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-      <a href="https://wa.me/5492664123456" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>© 2025 Tecnomanía - Todos los derechos reservados</p>
-  </div>
-</footer>
+  </footer>
 </body>
 </html>

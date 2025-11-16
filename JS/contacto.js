@@ -1,6 +1,6 @@
 // Espera a que el DOM esté completamente cargado
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     // --- 1. REFERENCIAS A ELEMENTOS DEL DOM ---
     const form = document.getElementById("contact-form");
     const inputNombre = document.getElementById("nombre");
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function validarCampo(inputElement, regex, errorElementId, mensajeError) {
         const valor = inputElement.value.trim();
         const errorElement = document.getElementById(errorElementId);
-        
+
         // 1. Si el campo está vacío, quita el error y no lo marca como inválido (solo lo hace en el submit)
         if (valor.length === 0) {
             inputElement.classList.remove("input-error");
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // 2. Realiza la prueba con la expresión regular proporcionada
-        // Nota: Solo se usa regex para email y teléfono, los demás usan lógica de longitud.
+        // Solo se usa regex para email y teléfono, los demás usan lógica de longitud.
         const esValido = regex ? regex.test(valor) : true;
 
         if (!esValido) {
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --- 4. VALIDACIONES EN TIEMPO REAL (EVENTO 'input') ---
-    
+
     // Email y Teléfono usan la función genérica con regex
     inputEmail.addEventListener("input", () =>
         validarCampo(inputEmail, regexEmail, "error-email", "Formato de email inválido.")
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     inputNombre.addEventListener("input", () => {
         const valor = inputNombre.value.trim();
         const errorElement = document.getElementById("error-nombre");
-        
+
         if (valor.length === 0) {
             inputNombre.classList.remove("input-error");
             errorElement.textContent = "";
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     inputMensaje.addEventListener("input", () => {
         const valor = inputMensaje.value.trim();
         const errorElement = document.getElementById("error-mensaje");
-        
+
         if (valor.length === 0) {
             inputMensaje.classList.remove("input-error");
             errorElement.textContent = "";
@@ -107,10 +107,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const telefonoValido = regexTelefono.test(inputTelefono.value.trim());
         const emailValido = regexEmail.test(inputEmail.value.trim());
         const mensajeValido = inputMensaje.value.trim().length >= 10;
-        
+
         // Verifica si todos los campos son válidos
         if (nombreValido && telefonoValido && emailValido && mensajeValido) {
-            
+
             spinnerOverlay.style.display = "flex"; // Mostrar spinner para simular carga
 
             // Simulación de envío de datos al servidor (retardo de 2 segundos)
@@ -119,15 +119,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Muestra la ventana modal con la confirmación y los datos
                 modal.style.display = "flex";
-                modalBody.innerHTML = `
-                    <p><strong>Nombre:</strong> ${inputNombre.value}</p>
-                    <p><strong>Teléfono:</strong> ${inputTelefono.value}</p>
-                    <p><strong>Email:</strong> ${inputEmail.value}</p>
-                    <p><strong>Mensaje:</strong> ${inputMensaje.value}</p>
-                    <hr style="margin: 15px 0; border-color: #62D0E1;">
-                    <p>🎉 ¡Gracias por contactarte con <strong>Tecnomanía</strong>!<br>
-                    Te responderemos a la brevedad 📩</p>
-                `;
+                // Limpia contenido previo del modal
+                modalBody.innerHTML = "";
+
+                // Crear elementos dinámicamente
+                const pNombre = document.createElement("p");
+                pNombre.innerHTML = `<strong>Nombre:</strong> ${inputNombre.value}`;
+
+                const pTelefono = document.createElement("p");
+                pTelefono.innerHTML = `<strong>Teléfono:</strong> ${inputTelefono.value}`;
+
+                const pEmail = document.createElement("p");
+                pEmail.innerHTML = `<strong>Email:</strong> ${inputEmail.value}`;
+
+                const pMensaje = document.createElement("p");
+                pMensaje.innerHTML = `<strong>Mensaje:</strong> ${inputMensaje.value}`;
+
+                const hr = document.createElement("hr");
+                hr.style.margin = "15px 0";
+                hr.style.borderColor = "#62D0E1";
+
+                const pFinal = document.createElement("p");
+                pFinal.innerHTML = `🎉 ¡Gracias por contactarte con <strong>Tecnomanía</strong>!<br>Te responderemos a la brevedad 📩`;
+
+                // Agregar al modal
+                modalBody.appendChild(pNombre);
+                modalBody.appendChild(pTelefono);
+                modalBody.appendChild(pEmail);
+                modalBody.appendChild(pMensaje);
+                modalBody.appendChild(hr);
+                modalBody.appendChild(pFinal);
 
                 form.reset(); // Limpia todos los campos del formulario
             }, 2000); // 2 segundos de retardo
@@ -142,10 +163,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // --- 6. CIERRE DEL MODAL ---
-    
+
     // Cerrar al hacer clic en la 'X'
     closeModal.addEventListener("click", () => (modal.style.display = "none"));
-    
+
     // Cerrar al hacer clic fuera del contenido del modal
     window.addEventListener("click", (e) => {
         if (e.target === modal) modal.style.display = "none";
